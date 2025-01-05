@@ -1,4 +1,4 @@
-# Shop
+# Leedo
 
 **Caution**: the backend project is inside
 the [backend](./backend) folder.
