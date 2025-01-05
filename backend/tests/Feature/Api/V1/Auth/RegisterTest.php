@@ -19,6 +19,7 @@ class RegisterTest extends TestCase
     public static function dataProviderForValidationCode(): array
     {
         return [
+
             'email should have correct format' => [
                 'data' => [
                     'email' => 'incorrect-email',

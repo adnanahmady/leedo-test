@@ -23,6 +23,7 @@ class ArticleResource extends JsonResource
             'slug' => $this->slug,
             'content' => $this->content,
             'writer' => new WriterResource($this->writer),
+            'category' => new CategoryResource($this->category),
         ];
     }
 }

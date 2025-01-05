@@ -84,6 +84,7 @@ class ListTest extends TestCase
             ->where('data.0.content', $article->content)
             ->where('data.0.writer.name', $article->writer->name)
             ->where('data.0.writer.email', $article->writer->email)
+            ->where('data.0.category.name', $article->category->name)
         );
     }
 
@@ -94,6 +95,6 @@ class ListTest extends TestCase
         $response = $this->getJson('/api/v1/articles');
 
         $response->assertStatus(200);
-        $response->assertJsonCount(3, 'data');
+        $response->assertJsonCount($count, 'data');
     }
 }

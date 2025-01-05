@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Api\V1\Blog;
 
 use App\Filters\ArticleFilter;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreArticleRequest;
-use App\Http\Requests\UpdateArticleRequest;
+use app\Http\Requests\Api\V1\Articles\StoreArticleRequest;
+use app\Http\Requests\Api\V1\Articles\UpdateArticleRequest;
+use App\Http\Resources\Api\V1\Blog\ArticleResource;
 use App\Http\Resources\Api\V1\Blog\ArticlesCollection;
+use App\Http\Services\Api\V1\Articles\StoreArticleService;
 use App\Models\Article;
 
 class ArticleController extends Controller
@@ -16,5 +18,10 @@ class ArticleController extends Controller
         $articles = Article::filter($filter)->get();
 
         return new ArticlesCollection($articles);
+    }
+
+    public function store(StoreArticleService $service): ArticleResource
+    {
+        return new ArticleResource($service->store());
     }
 }

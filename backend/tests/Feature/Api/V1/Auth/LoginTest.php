@@ -19,6 +19,7 @@ class LoginTest extends TestCase
     public static function dataProviderForValidationCode(): array
     {
         return [
+
             'password be at least 8 characters' => [
                 'data' => [
                     'email' => 'dummy@dummycom',
