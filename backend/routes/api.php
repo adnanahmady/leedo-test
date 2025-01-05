@@ -3,7 +3,6 @@
 use App\Http\Controllers\Api\V1\Auth\LoginController;
 use App\Http\Controllers\Api\V1\Auth\PasswordRecoveryController;
 use App\Http\Controllers\Api\V1\Auth\RegisterController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::name('api.v1.')
@@ -23,4 +22,8 @@ Route::name('api.v1.')
             PasswordRecoveryController::class,
             'resetPassword'
         ])->name('passwords.reset');
+
+        Route::name('articles.')->group(
+            base_path('routes/api/v1/articles.api.php')
+        );
     });
