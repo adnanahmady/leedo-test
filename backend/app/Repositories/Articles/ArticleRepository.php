@@ -21,4 +21,21 @@ class ArticleRepository implements ArticleRepositoryInterface
             'category_id' => $categoryId,
         ]);
     }
+
+    public function update(
+        Article $article,
+        string $title,
+        string $slug,
+        string $content,
+        int $categoryId,
+    ): Article {
+        $article->update([
+            'title' => $title,
+            'slug' => $slug,
+            'content' => $content,
+            'category_id' => $categoryId,
+        ]);
+
+        return $article->refresh();
+    }
 }

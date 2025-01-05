@@ -14,4 +14,11 @@ class CategoryController extends Controller
     {
         return new CategoryResource($service->store());
     }
+
+    public function update(
+        UpdateArticleRequest $request,
+        Article $article
+    ) {
+        //
+    }
 }

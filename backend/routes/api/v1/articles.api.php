@@ -10,5 +10,7 @@ Route::prefix('articles/')->group(function () {
     Route::middleware('auth:sanctum')->group(function () {
         Route::post('/', [ArticleController::class, 'store'])
             ->name('store');
+        Route::put('/{article}', [ArticleController::class, 'update'])
+            ->name('update');
     });
 });

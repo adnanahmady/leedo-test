@@ -9,6 +9,7 @@ use app\Http\Requests\Api\V1\Articles\UpdateArticleRequest;
 use App\Http\Resources\Api\V1\Blog\ArticleResource;
 use App\Http\Resources\Api\V1\Blog\ArticlesCollection;
 use App\Http\Services\Api\V1\Articles\StoreArticleService;
+use App\Http\Services\Api\V1\Articles\UpdateArticleService;
 use App\Models\Article;
 
 class ArticleController extends Controller
@@ -23,5 +24,13 @@ class ArticleController extends Controller
     public function store(StoreArticleService $service): ArticleResource
     {
         return new ArticleResource($service->store());
+    }
+
+    public function update(
+        UpdateArticleService $service,
+        Article $article
+    ): ArticleResource
+    {
+        return new ArticleResource($service->update($article));
     }
 }

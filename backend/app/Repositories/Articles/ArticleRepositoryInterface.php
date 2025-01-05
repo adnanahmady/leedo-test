@@ -13,4 +13,12 @@ interface ArticleRepositoryInterface
         int $writerId,
         int $categoryId,
     ): Article;
+
+    public function update(
+        Article $article,
+        string $title,
+        string $slug,
+        string $content,
+        int $categoryId,
+    ): Article;
 }
