@@ -9,11 +9,60 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Queue;
 use Illuminate\Testing\Fluent\AssertableJson;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class RegisterTest extends TestCase
 {
     use RefreshDatabase;
+
+    public static function dataProviderForValidationCode(): array
+    {
+        return [
+            'email should have correct format' => [
+                'data' => [
+                    'email' => 'incorrect-email',
+                ],
+                'expectedErrorField' => 'email',
+                'expectedErrorCount' => 1,
+            ],
+
+            'email should not exist in system' => [
+                'data' => [
+                    'email' => 'dummy@dummy2.com',
+                ],
+                'expectedErrorField' => 'email',
+                'expectedErrorCount' => 1,
+            ],
+
+            'email should be required' => [
+                'data' => [],
+                'expectedErrorField' => 'email',
+                'expectedErrorCount' => 1,
+            ],
+
+        ];
+    }
+
+    #[DataProvider('dataProviderForValidationCode')]
+    public function testDataValidation(
+        array $data,
+        string $expectedErrorField,
+        int $expectedErrorCount
+    ): void {
+        User::factory()->create([
+            'email' => 'dummy@dummy2.com',
+        ]);
+
+        $response = $this->postJson(route('api.v1.register'), $data);
+
+        $response->assertUnprocessable();
+        $response->assertJsonValidationErrorFor($expectedErrorField);
+        $response->assertJsonCount(
+            $expectedErrorCount,
+            "errors.$expectedErrorField"
+        );
+    }
 
     public function test_the_code_should_get_stored_to_later_user()
     {
