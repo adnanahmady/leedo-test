@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Http\Resources\Api\V1\Blog;
+namespace App\Http\Resources\Api\V1\Blog;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -20,6 +20,8 @@ class CategoryResource extends JsonResource
     {
         return [
             'name' => $this->name,
+            'slug' => $this->slug,
+            'owner' => new WriterResource($this->owner)
         ];
     }
 }

@@ -19,6 +19,7 @@ class CategoryFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
+            'slug' => $this->faker->slug(),
             'owner_id' => User::factory(),
         ];
     }

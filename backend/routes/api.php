@@ -26,4 +26,7 @@ Route::name('api.v1.')
         Route::name('articles.')->group(
             base_path('routes/api/v1/articles.api.php')
         );
+        Route::name('categories.')->group(
+            base_path('routes/api/v1/categories.api.php')
+        );
     });

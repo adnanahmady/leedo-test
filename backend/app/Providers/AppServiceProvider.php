@@ -8,6 +8,8 @@ use App\Repositories\Auth\PasswordRepository;
 use App\Repositories\Auth\PasswordRepositoryInterface;
 use App\Repositories\Auth\RegisterRepository;
 use App\Repositories\Auth\RegisterRepositoryInterface;
+use App\Repositories\Categories\CategoryRepository;
+use App\Repositories\Categories\CategoryRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -36,6 +38,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             ArticleRepositoryInterface::class,
             ArticleRepository::class
+        );
+        $this->app->bind(
+            CategoryRepositoryInterface::class,
+            CategoryRepository::class
         );
     }
 }
