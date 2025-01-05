@@ -11,4 +11,10 @@ interface CategoryRepositoryInterface
         string $slug,
         int $ownerId,
     ): Category;
+
+    public function update(
+        Category $category,
+        string $name,
+        string $slug,
+    ): Category;
 }

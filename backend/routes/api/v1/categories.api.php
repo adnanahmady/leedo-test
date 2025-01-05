@@ -7,5 +7,7 @@ Route::prefix('categories/')->group(function () {
     Route::middleware('auth:sanctum')->group(function () {
         Route::post('/', [CategoryController::class, 'store'])
             ->name('store');
+        Route::put('/{category}', [CategoryController::class, 'update'])
+            ->name('update');
     });
 });
