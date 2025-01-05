@@ -13,7 +13,7 @@ class RegisterService
 {
     public function __construct(
         private RegisterRequest $request,
-        private RegisterCodeManager $cacheManager,
+        private RegisterCodeManager $codeManager,
         private RegisterRepositoryInterface $repository,
     ) {}
 
@@ -21,7 +21,7 @@ class RegisterService
     {
         $this->repository->register($this->request->email);
 
-        $code = $this->cacheManager->get($this->request->email);
+        $code = $this->codeManager->get($this->request->email);
 
         Mail::to($this->request->email)->queue(
             new UserRegisteredEmail($code)

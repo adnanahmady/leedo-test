@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Repositories\Auth\PasswordRepository;
+use App\Repositories\Auth\PasswordRepositoryInterface;
 use App\Repositories\Auth\RegisterRepository;
 use App\Repositories\Auth\RegisterRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
@@ -24,6 +26,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             RegisterRepositoryInterface::class,
             RegisterRepository::class
+        );
+        $this->app->bind(
+            PasswordRepositoryInterface::class,
+            PasswordRepository::class
         );
     }
 }

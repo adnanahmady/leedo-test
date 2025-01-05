@@ -21,7 +21,7 @@ class UserActivationService
 
         IncorrectActivationCodeException::throwIf(
             $code === null,
-            ['code' => __('Activation code is incorrect.')]
+            __('Activation code is incorrect.')
         );
 
         $this->repository->activate(

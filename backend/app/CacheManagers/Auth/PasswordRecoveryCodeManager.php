@@ -2,10 +2,10 @@
 
 namespace App\CacheManagers\Auth;
 
-class RegisterCodeManager extends BaseCodeManager
+class PasswordRecoveryCodeManager extends BaseCodeManager
 {
     protected function key(string $email): string
     {
-        return 'register:email:' . $email;
+        return 'recovery:password:' . $email;
     }
 }
